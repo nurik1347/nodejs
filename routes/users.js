@@ -3,10 +3,10 @@ const router = express.Router();
 const { createUser, getUsers, updateUser, deleteUser, getUserById } = require('../Controllers/Controllers');
 
 // Create a new user
-router.post('/', createUser);
+router.post('/create', createUser);
 
 // Get all users
-router.get('/', getUsers);
+router.get('/products', getUsers);
 
 // Get a user by ID
 router.get('/:id', getUserById);
