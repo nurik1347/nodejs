@@ -1,20 +1,18 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
-require('dotenv').config(); // .env faylini yuklash
-
 const connectDB = require('./config/database'); // MongoDB ulanishi
 const calculateRoutes = require('./routes/calculate'); // Hisoblash routlari
 const userRoutes = require('./routes/users'); // Foydalanuvchi routlari
+require('dotenv').config(); // .env faylini yuklash
 
-const app = express(); 
+const app = express();
 
 // MongoDB'ga ulanish
-connectDB(); 
+connectDB(); // MONGO_URI dan foydalangan holda ulanish
 
 // Middleware
 app.use(cors());
-app.use(express.json()); 
+app.use(express.json());
 
 // Routelar
 app.use('/calculate', calculateRoutes); // Hisoblash
