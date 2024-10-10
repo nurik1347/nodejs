@@ -1,7 +1,7 @@
-const User = require('../Models/User');
+const Product = require('../Models/Product'); // Modelni import qilish
 
-// Create new user
-const createUser = async (req, res) => {
+// Create new product
+const createProduct = async (req, res) => {
     const { img, title } = req.body;
 
     if (!img || !title) {
@@ -9,70 +9,70 @@ const createUser = async (req, res) => {
     }
 
     try {
-        const newUser = new User({ img, title });
-        await newUser.save();
-        res.status(201).json({ data: newUser });
+        const newProduct = new Product({ img, title });
+        await newProduct.save();
+        res.status(201).json({ data: newProduct });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server Error' });
     }
 };
 
-// Get all users
-const getUsers = async (req, res) => {
+// Get all products
+const getProducts = async (req, res) => {
     try {
-        const users = await User.find();
-        res.json({ data: users });
+        const products = await Product.find();
+        res.json({ data: products });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server Error' });
     }
 };
 
-// Get user by ID
-const getUserById = async (req, res) => {
+// Get product by ID
+const getProductById = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id);
-        if (!user) return res.status(404).json({ message: 'User not found' });
-        res.json({ data: user });
+        const product = await Product.findById(req.params.id);
+        if (!product) return res.status(404).json({ message: 'Product not found' });
+        res.json({ data: product });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server Error' });
     }
 };
 
-// Update user by ID
-const updateUser = async (req, res) => {
+// Update product by ID
+const updateProduct = async (req, res) => {
     const { title } = req.body;
 
     try {
-        const user = await User.findByIdAndUpdate(
+        const product = await Product.findByIdAndUpdate(
             req.params.id,
             { title },
             { new: true, runValidators: true }
         );
 
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!product) return res.status(404).json({ message: 'Product not found' });
 
-        res.json({ data: user });
+        res.json({ data: product });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server Error' });
     }
 };
 
-// Delete user by ID
-const deleteUser = async (req, res) => {
+// Delete product by ID
+const deleteProduct = async (req, res) => {
     try {
-        const user = await User.findByIdAndDelete(req.params.id);
+        const product = await Product.findByIdAndDelete(req.params.id);
 
-        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (!product) return res.status(404).json({ message: 'Product not found' });
 
-        res.json({ message: 'User deleted successfully' });
+        res.json({ message: 'Product deleted successfully' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server Error' });
     }
 };
 
-module.exports = { createUser, getUsers, getUserById, updateUser, deleteUser };
+module.exports = { createProduct, getProducts, getProductById, updateProduct, deleteProduct };

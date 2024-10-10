@@ -10,21 +10,21 @@ const PORT = process.env.PORT || 5003;
 app.use(cors());
 app.use(express.json()); // to parse incoming JSON
 
-// Route to handle user data
-app.post('/user', (req, res) => {
+// Route to handle product data
+app.post('/product', (req, res) => {
     const { img, title } = req.body;
 
     // Check if all necessary data is provided
     if (img && title) {
         res.json({
-            message: "Foydalanuvchi muvaffaqiyatli qabul qilindi",
-            user: {
+            message: "Mahsulot muvaffaqiyatli qabul qilindi",
+            product: {
                 img: img,
                 title: title,
             }
         });
     } else {
-        res.status(400).json({ error: "Ism, yosh yoki familiya yetishmayapti" });
+        res.status(400).json({ error: "Rasm yoki mahsulot nomi yetishmayapti" });
     }
 });
 
