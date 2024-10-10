@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./db'); // MongoDB ulanish funksiyasini import qilish
+const connectDB = require('./server'); // MongoDB ulanish funksiyasini import qilish
 require('dotenv').config(); // .env faylini o'qish uchun
 
 const app = express();
