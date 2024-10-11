@@ -4,7 +4,7 @@ const connectDB = require('./config/database'); // MongoDB ulanish funksiyasini 
 require('dotenv').config(); // .env faylini o'qish uchun
 
 const app = express();
-const PORT = process.env.PORT || 5003;
+const PORT = process.env.PORT || 5004;
 
 // Middleware to enable CORS and parse JSON
 app.use(cors());
@@ -26,7 +26,12 @@ app.get('/', (req, res) => {
     res.json({ message: "Server is running" });
 });
 
-// Serverni ishga tushirish
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// Port bandligini tekshirish
+app.listen(PORT, (err) => {
+    if (err) {
+        console.error(`Error: Port ${PORT} is already in use. Please change the port or stop the process using this port.`);
+        process.exit(1); // Serverni to'xtatish
+    } else {
+        console.log(`Server is running on port ${PORT}`);
+    }
 });

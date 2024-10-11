@@ -6,7 +6,7 @@ const { createProduct, getProducts, updateProduct, deleteProduct, getProductById
 router.post('/create', createProduct);
 
 // Get all products
-router.get('/', getProducts);
+router.get('/product', getProducts);
 
 // Get a product by ID
 router.get('/:id', getProductById);
