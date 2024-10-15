@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
     res.json({ message: "Server is running" });
 });
 
+
 // Port bandligini tekshirish
 app.listen(PORT, (err) => {
     if (err) {
